@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["key"],
+    "properties": {
+        "key": {
+            "type": "string",
+            "errorMessage": {
+                "type": "Field key must be string."
+            }
+        }
+    },
+
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {
+            "key": "Key is required!"
+        }
+    }
+}

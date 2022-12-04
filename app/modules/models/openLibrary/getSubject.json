@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [],
+    "properties": {
+        "search": {
+            "type": "string",
+            "minLength": 3,
+            "default": "i am hard worker",
+            "errorMessage": {
+                "minLength": "Field search should be greater than 3 characters.",
+                "type": "Field search must be string."
+            }
+        },
+        "limit": {
+            "type": "string",
+            "format": "numberString",
+            "errorMessage": {
+                "format": "Limit must be number/string number"
+            }
+        }
+    },
+
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {}
+    }
+}
