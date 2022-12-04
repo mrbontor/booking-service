@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["isActive"],
+    "properties": {
+        "isActive": {
+            "type": "boolean",
+            "enum": [true, false],
+            "errorMessage": {
+                "type": "Status should be boolean",
+                "enum": "Please select one from the options"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {
+            "isActive": "Login status is required"
+        }
+    }
+}
