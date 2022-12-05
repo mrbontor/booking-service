@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["userId", "list", "startDate", "endDate"],
+    "properties": {
+        "userId": {
+            "type": "string",
+            "format": "ObjectId",
+            "errorMessage": {
+                "type": "User Id must be string.",
+                "format": "User Id format is wrong!"
+            }
+        },
+        "list": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": ["bookKey", "bookTitle"],
+                "properties": {
+                    "bookKey": {
+                        "type": "string",
+                        "minLength": 3,
+                        "errorMessage": {
+                            "type": "Book Key must be string.",
+                            "minLength": "Book Key should be greater than 3"
+                        }
+                    },
+                    "bookTitle": {
+                        "type": "string",
+                        "minLength": 3,
+                        "errorMessage": {
+                            "type": "Book title must be string",
+                            "minLength": "Book Title should be greater than 3"
+                        }
+                    }
+                },
+                "errorMessage": {
+                    "type": "List item should be in Object format",
+                    "required": {
+                        "bookKey": "Book Key is required!",
+                        "bookTitle": "Book Title required!"
+                    }
+                }
+            },
+            "errorMessage": {
+                "type": "List must be in array format!",
+                "minItems": "Please pick at least one book!"
+            }
+        },
+        "startDate": {
+            "type": "string",
+            "format": "dateLongIndo",
+            "errorMessage": {
+                "type": "Start Date must be string with format date",
+                "format": "Start Date should be YYYY-MM-DD hh:mm:ss"
+            }
+        },
+        "endDate": {
+            "type": "string",
+            "format": "dateLongIndo",
+            "errorMessage": {
+                "format": "End Date should be YYYY-MM-DD hh:mm:ss"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {
+            "userId": "User Id is required!",
+            "list": "List is required!",
+            "startDate": "Start date is required!",
+            "endDate": "End date is required!"
+        }
+    }
+}

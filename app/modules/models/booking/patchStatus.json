@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["status"],
+    "properties": {
+        "status": {
+            "type": "string",
+            "enum": ["approved", "rejected", "pending", "done", "cancelled"],
+            "errorMessage": {
+                "type": "Please select one from the options",
+                "enum": "Only allowed for approved, rejected and pending"
+            }
+        },
+        "reason": {
+            "type": "string",
+            "errorMessage": {
+                "type": "Reason must be string"
+            }
+        }
+    },
+    "oneOf": [
+        {
+            "if": {
+                "properties": { "status": { "type": "string", "const": "rejected" } }
+            },
+            "then": {
+                "properties": {
+                    "reason": {
+                        "type": "string",
+                        "errorMessage": {
+                            "type": "Reason must be string"
+                        }
+                    }
+                },
+                "required": ["reason"]
+            }
+        }
+    ],
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {
+            "status": "Status is required"
+        }
+    }
+}
