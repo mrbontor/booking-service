@@ -7,5 +7,5 @@ module.exports = {
     UserController,
     OpenLibraryController,
     BookingController,
-    AuthController
+    AuthController,
 };

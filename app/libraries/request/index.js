@@ -25,7 +25,7 @@ const request = async (method, url, reqData = {}, options = {}) => {
         const errResponse = {
             message: error.message || error.response.message || 'ErrorRequest',
             statusCode: error.response ? error.response.status : error.response.statusText,
-            status: false
+            status: false,
         };
         throw errResponse;
     }

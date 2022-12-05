@@ -43,7 +43,7 @@ const Services = {
             if (!details) {
                 throw new NotFoundError('No book(s) found!');
             }
-            
+
             return filterDetailResult(details);
         } catch (error) {
             throw error;
@@ -59,7 +59,7 @@ const filterSubjectResult = (books) => {
         FIELDS_SUBJECT.forEach((field) => (newBook[field] = book[field]));
         return newBook;
     });
-    return results ;
+    return results;
 };
 
 const filterDetailResult = (book) => {

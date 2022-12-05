@@ -7,7 +7,7 @@ const UNAUTHORIZED = 401;
 const UNPROCESSABLE_ENTITY = 422;
 const COOKIE_REFRESH_TOKEN = 'RTOKEN';
 
-const projection = ['username', 'firstName', 'lastName', 'email', 'isActive', 'token', "isAdmin"];
+const projection = ['username', 'firstName', 'lastName', 'email', 'isActive', 'token', 'isAdmin'];
 const isSecure = process.env.ENV != 'development';
 
 module.exports = {
@@ -17,7 +17,6 @@ module.exports = {
             if (!authHeader?.startsWith('Bearer ')) return ResponseHelper.customStatus(res, UNAUTHORIZED);
 
             const token = authHeader.split(' ')[1];
-
 
             const isTokenValid = await VerifyAccessToken(token, TOKEN_SECRET);
             // console.info(`[VERIFY][TOKEN][MIDDLEWARE] >>>>> ${JSON.stringify(isTokenValid)}`);
@@ -43,9 +42,8 @@ module.exports = {
                     UNPROCESSABLE_ENTITY,
                     'Your account has been disactivated, please contact adminstrator if you think this is wrong!',
                 );
-            }     
+            }
 
-            
             console.info(`[VERIFY][USER][MIDDLEWARE] >>>>> ${JSON.stringify(user)}`);
 
             req.userContext = isTokenValid.data;

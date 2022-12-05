@@ -1,5 +1,107 @@
 
-# COSMART Booking Service
+# BookingService
+
+### Requirements
+
+- [Git](https://www.odoo.com/documentation/15.0/contributing/documentation.html#install-git)
+- [Node JS >= 14.15](https://nodejs.org/en/blog/release/v14.17.3/)
+- [MongoDb Driver](https://www.mongodb.com/docs) (Optional)
+- [MongoDb Atlas](https://www.mongodb.com/cloud/atlas/register).
+- [Ajv](https://ajv.js.org/guide/getting-started.html)
+- [Docker and Docker Compose](https://docs.docker.com/get-docker/) (Optional)
+- [Postman](https://learning.postman.com/docs/getting-started/introduction/)
+
+
+I dont finish the Unit Test yet, but i have provided all the API serive including test case for every `endpoints` in folder [/postman](https://github.com/mrbontor/booking-service/tree/main/postman)
+
+### Settings & Configuring
+
+#### App config
+
+
+Please check the file `env.example` and change to `.env`
+
+```env
+APP_ENV             = development
+APP_PORT            = 3000
+APP_ISSUER          = gitbub.com/mrbontor
+
+....
+
+```
+
+#### Database config
+
+This service is using [MongoDb Cloud Atlas](https://www.mongodb.com/cloud/atlas/register).
+If you are going to use your local MongoDb, please change the connection url [/app/libraries/db/mongoDb/index.js Line 12](https://github.com/mrbontor/booking-service/blob/71decb14f60ad968421d02563617330e7608a7b2/app/libraries/db/mongoDb/index.js#L12)
+
+```js
+const mongoUrl = `mongodb+srv://....`
+//to
+const mongoUrl = `mongodb://...`
+
+```
+
+example existing user:
+
+`admin`
+```js
+username: "superadmin"
+password: "Haruslolos123!"
+```
+
+`admin`
+```js
+username: "masalalu"
+password: "Haruslolos123!"
+```
+
+### Deployment && Testing
+
+#### Deployment && Usage
+
+By default, you can run this service following command below:
+
+```sh
+# install dependencies
+$ npm install
+
+# run app
+$ npm start
+
+# or
+$ node index.js
+```
+
+And you can also running thi service using `Docker` and `Docker-Compose`
+
+```sh
+# start
+$ docker-compose up
+
+# stop
+$ docker-compose down
+
+# remove
+$ docker-compose down -v
+```
+#### Running the test
+
+As i mentioned before, the `Unit Test Code` not finish yet, but already finish with documentation in [/postman](https://github.com/mrbontor/booking-service/tree/main/postman)
+
+
+how to run:
+
+```sh
+# start
+$ npm test
+```
+
+#### Running in Postman
+
+Please follow this [Postman Doc Import Api](https://learning.postman.com/docs/designing-and-developing-your-api/importing-an-api/) for better information
+
+
 
 
 
@@ -1876,7 +1978,6 @@ ill suggest to use table version bacause it support pagination, search, filter b
 
 Create `Booking` use `JSON` payload to create a booking/appointment
 
-
 ***Endpoint:***
 
 ```bash
@@ -3417,6 +3518,4 @@ URL: {{local}}/v1/bookings/638d41cfb8b5e4ba794fe9bf
 
 
 ---
-[Back to top](#cosmart)
-
->Generated at 2022-12-05 10:23:20 by [docgen](https://github.com/thedevsaddam/docgen)
+[Back to top](#BookingService)

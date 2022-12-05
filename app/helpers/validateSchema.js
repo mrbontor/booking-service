@@ -58,7 +58,7 @@ const ajvPlugin = () => {
     ajvInit.addFormat('24-hours-time', /^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$/);
     ajvInit.addFormat('12-hours-time', /^(?:1[0-2]|0[0-9]):[0-5][0-9]:[0-5][0-9]$/);
     ajvInit.addFormat('strongPassword', /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/);
-    ajvInit.addFormat('numberString', /^\d+$/);    
+    ajvInit.addFormat('numberString', /^\d+$/);
 };
 
 module.exports = {

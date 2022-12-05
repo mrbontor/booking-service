@@ -3,7 +3,6 @@ const App = new Router();
 
 const { AuthController } = require('../../../modules/controllers');
 
-
 App.post('/login', AuthController.signIn);
 
 const { VerifyToken } = require('../../../modules/middleware');

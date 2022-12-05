@@ -7,5 +7,5 @@ module.exports = {
     UserModel,
     OpenLibraryModel,
     BookingModel,
-    AuthModel
+    AuthModel,
 };

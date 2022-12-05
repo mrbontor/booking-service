@@ -1,9 +1,9 @@
 const Jwt = require('jsonwebtoken');
 
-const TOKEN_SECRET = process.env.APP_TOKEN_SECRET;
-const TOKEN_EXPIRY = process.env.APP_TOKEN_EXPIRED;
-const REFRESH_TOKEN_SECRET = process.env.APP_REFRESH_TOKEN_SECRET;
-const REFRESH_TOKEN_EXPIRY = process.env.APP_REFRESH_TOKEN_EXPIRED;
+const TOKEN_SECRET = process.env.APP_TOKEN_SECRET || 'NmU4ZDJhZDNkYzVmNWRmZTk4NmNmNzAwNmM5OWI1M2E';
+const TOKEN_EXPIRY = process.env.APP_TOKEN_EXPIRED || '1m';
+const REFRESH_TOKEN_SECRET = process.env.APP_REFRESH_TOKEN_SECRET || 'NmU4ZDJhZDNkYzVmNWRmZTk4NmNmNzAwNmM5OWI1M2E';
+const REFRESH_TOKEN_EXPIRY = process.env.APP_REFRESH_TOKEN_EXPIRED || '1m';
 
 const ISSUER = process.env.APP_ISSUER || 'github.com/mrbontor';
 

@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+    # mongodb:
+    #     image: mongo:5.0.2
+    #     restart: unless-stopped
+    #     container_name: book-db
+    #     env_file: .env
+    #     environment:
+    #         - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+    #         - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    #     ports:
+    #         - ${MONGO_LOCAL_PORT}:${MONGO_DOCKER_PORT}
+    #     volumes:
+    #         - data:/data/db
+    app:
+        build: .
+        container_name: book-api
+        ports:
+            - ${APP_PORT}:${APP_PORT}
+        env_file: .env
+        environment:
+            - MONGO_HOST=${MONGO_HOST}
+            - MONGO_USER=${MONGO_USER}
+            - MONGO_PASSWORD=${MONGO_PASSWORD}
+            - MONGO_DB=${MONGO_DB}
+            - MONGO_PORT=${MONGO_DOCKER_PORT}
+        stdin_open: true
+        tty: true
+
+networks:
+    default:
+        external: true
+        name: cosmart

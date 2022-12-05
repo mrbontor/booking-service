@@ -7,5 +7,5 @@ module.exports = {
     UserService,
     OpenLibraryService,
     BookingService,
-    AuthService
+    AuthService,
 };

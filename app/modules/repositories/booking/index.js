@@ -71,8 +71,8 @@ module.exports = {
 
         if (search) {
             query.$or = [
-                { "list.bookKey": { $regex: search, $options: 'i' } },
-                { "list.bookTitle": { $regex: search, $options: 'i' } },
+                { 'list.bookKey': { $regex: search, $options: 'i' } },
+                { 'list.bookTitle': { $regex: search, $options: 'i' } },
             ];
 
             options.push({ $limit: 10 });
@@ -132,9 +132,9 @@ module.exports = {
             throw new BadRequestError('Booking Id not found!');
         }
 
-        const clause = { 
+        const clause = {
             _id: Mongo.ObjectId(bookingId),
-            status: { $ne: "approved" }
+            status: { $ne: 'approved' },
         };
 
         return await client.collection(COLLECTION_BOOKING).findOneAndDelete(clause, { projection: { _id: 1 } });

@@ -26,13 +26,12 @@ const bookingData = (payload, isUpdate = false, other = {}) => {
 
 const BOOKING_STATUS = ['approved', 'rejected', 'pending', 'done'];
 
-
 const removeDuplicateList = (list, key = 'bookKey') => {
-    return [...new Map(list.map(item => [item[key], item])).values()]
-}
+    return [...new Map(list.map((item) => [item[key], item])).values()];
+};
 
 const validateBookingProcess = (payload, isEdit = false) => {
-    const howLong = DateDiff(payload.endDate, payload.startDate)
+    const howLong = DateDiff(payload.endDate, payload.startDate);
     if (!isEdit && IsDateInPast(payload.startDate)) {
         throw new BadRequestError(`Dont stuck in the past, there is still a lot of sand in the ocean`);
     }
@@ -43,29 +42,29 @@ const validateBookingProcess = (payload, isEdit = false) => {
     if (payload.list.length > MAX_BOOKS_BORROWED) {
         throw new BadRequestError(`You can only borrow maximal ${MAX_BOOKS_BORROWED} books`);
     }
-}
+};
 
 const Services = {
     createBooking: async (payload) => {
         let booking = await Validator.validateSchema(payload, BookingModel.POST);
         validateBookingProcess(payload);
-        
+
         const queryListBorrowed = {
             userId: payload.userId,
             status: { $ne: 'done' },
-        };        
+        };
         const isAllowedToBorrow = await BookingRepository.findBooking(queryListBorrowed);
         if (isAllowedToBorrow && isAllowedToBorrow.length > MAX_BOOKING) {
-            throw new BadRequestError(`You borrow too much`)
+            throw new BadRequestError(`You borrow too much`);
         }
-        const listOfBookKey = payload.list.map(item => item.bookKey);
+        const listOfBookKey = payload.list.map((item) => item.bookKey);
         const query = {
-            "list.bookKey": { 
-                $in: listOfBookKey
+            'list.bookKey': {
+                $in: listOfBookKey,
             },
             userId: payload.userId,
             status: { $ne: 'done' },
-        };        
+        };
         const isExist = await BookingRepository.findBooking(query);
         if (isExist) {
             throw new UnprocessableEntityError(`Please check you list, one/some of them is still you borrowed`);
@@ -75,7 +74,7 @@ const Services = {
         booking.list = removeDuplicateList(booking.list);
 
         const dataBooking = bookingData(booking);
-        
+
         return await BookingRepository.save(dataBooking);
     },
 
@@ -84,7 +83,7 @@ const Services = {
 
         validateBookingProcess(payload, true);
 
-        const listOfBookKey = payload.list.map(item => item.bookKey);
+        const listOfBookKey = payload.list.map((item) => item.bookKey);
         const query = {
             _id: ObjectId(bookingId),
             userId: payload.userId,
@@ -93,7 +92,7 @@ const Services = {
         if (!isExist) {
             throw new NotFoundError('Booking Id is not found!');
         }
-        
+
         //ensure no duplicate entries by book key
         booking.list = removeDuplicateList(booking.list);
 
@@ -156,7 +155,9 @@ const Services = {
         }
         const canChanged = ['rejected', 'pending', 'cancelled'];
         if (isExist.status === 'approved' && canChanged.indexOf(bookingStatus.status) !== -1) {
-            throw new UnprocessableEntityError('The Booking is already approved, please return our book for new booking');
+            throw new UnprocessableEntityError(
+                'The Booking is already approved, please return our book for new booking',
+            );
         }
         if (isExist.status === 'done') {
             throw new UnprocessableEntityError('You cannot modify this boking anymore');
@@ -168,7 +169,6 @@ const Services = {
     },
 
     deleteBooking: async (bookingId) => {
-        
         const { value } = await BookingRepository.delete(bookingId);
         if (!value) {
             throw new BadRequestError('Booking Id is not found or book(s) still borrowed!');

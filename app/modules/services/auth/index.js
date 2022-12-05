@@ -26,7 +26,7 @@ const setJwtPayload = (data) => {
         firstName: data.firstName,
         email: data.email,
         isActive: data.isActive,
-        isAdmin: data.isAdmin
+        isAdmin: data.isAdmin,
     };
 };
 

@@ -7,7 +7,7 @@ const Crypto = require('crypto');
 
 const ALGORITM = 'sha512';
 const CRYPTING_ALGORITM = 'aes-256-gcm';
-const KEY = process.env.APP_KEY;
+const KEY = process.env.APP_KEY || 'OWM5YTc2NzM5ZjgyNGQ2Njg2OTJjZDFkMzE2ZTFlMWI=';
 
 const RANDOM_BYTE = 128;
 const MAX_NUMBER = 10000;

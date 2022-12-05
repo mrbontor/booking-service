@@ -59,10 +59,10 @@ const isDateInPast = (date) => {
 
 const dateDiff = (startDate, endDate, label = 'day') => {
     const dayjs = require('dayjs');
-    const start = dayjs(startDate)
-    const end = dayjs(endDate)
+    const start = dayjs(startDate);
+    const end = dayjs(endDate);
 
-    return start.diff(end, label)
+    return start.diff(end, label);
 };
 
 module.exports = {

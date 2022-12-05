@@ -3,8 +3,7 @@ const App = express();
 
 const { BookingController } = require('../../../modules/controllers');
 
-
-App.post('/', BookingController.createBooking)
+App.post('/', BookingController.createBooking);
 
 const { VerifyToken } = require('../../../modules/middleware');
 App.use(VerifyToken.verifyToken);
