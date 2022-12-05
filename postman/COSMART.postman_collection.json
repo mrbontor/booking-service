@@ -1,0 +1,5882 @@
+{
+	"info": {
+		"_postman_id": "dabfdba5-66d9-440e-a157-e9c4c2eca474",
+		"name": "COSMART",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16017716"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonBody = JSON.parse(responseBody);",
+									"if(typeof jsonBody.data !== 'undefined') {",
+									"    postman.setEnvironmentVariable(\"token\", jsonBody.data.accessToken);",
+									"    postman.setEnvironmentVariable(\"refresh_token\",  pm.cookies.get('RTOKEN'));",
+									"    postman.setEnvironmentVariable(\"deviceId\", pm.cookies.get('DID'));",
+									"    console.log(pm.cookies.get('RTOKEN'))",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"superadmin\",\n    \"password\": \"Haruslolos123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/auth/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "User login with `username` and `password`\n\n`Login API` will return `` accessToken and `refreshToken` ``\n\n`accessToken` provided in Response \\`body\\` where `refreshToken` in \\`Cookies \\`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"superadmin\",\n    \"password\": \"Haruslolos123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZXlKcGRpSTZJbTB4WWprNVFXNHhhRU5wYTNkU2RWWWlMQ0psYm1OeWVYQjBaV1JFWVhSaElqb2lRMU5qYkhSMFRtaExOVEJ5UkRGUlUwUnpMM00xV2pOQ1NWSjFhRFJtUjJ4dk5USmlkREZ4ZUUxNldtMUZiMVpSZUZneWREQjJjRE40WkRCSFpXa3pWVzl4UjJwdVFtOHJOM2QwYTNoS1RtZzJObW93T1ZwTFFWQkVUVXhpVWpKaU1rZEdVRXN2V0ZSM1JGUk1JaXdpWVhWMGFDSTZJazlqUVVSdlZtdDFTRUpHU1ZGdFRXOVdRV0ppTkZFOVBTSjkiLCJpYXQiOjE2NzAyMDk0MjQsImV4cCI6MTY3MDIwOTYwNCwiYXVkIjoiY29zbWFydC5jby5pZCIsImlzcyI6ImNvc21hcnQuY28uaWQifQ.E9rbHxNhCsC73dZm8P0PuiXrq8apswrcoVKs_IhmuQY; Max-Age=86400; Path=/; Expires=Tue, 06 Dec 2022 03:03:44 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "DID=900b2043-718d-4380-9f65-07e41eade4dc; Max-Age=31536000; Path=/; Expires=Tue, 05 Dec 2023 03:03:44 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "449"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c1-GGK2sK4BCP4rjlVudMx+Vxo23vc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:03:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjYzOGIzNDJlN2ZkYzBjZGY5NWY2MTcxMCIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsImZpcnN0TmFtZSI6InN1cGVyIiwiZW1haWwiOiJzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlzQWN0aXZlIjp0cnVlLCJpc0FkbWluIjp0cnVlfSwiaWF0IjoxNjcwMjA5NDI0LCJleHAiOjE2NzAyMDk1NDQsImF1ZCI6ImNvc21hcnQuY28uaWQiLCJpc3MiOiJjb3NtYXJ0LmNvLmlkIn0.16Qz04MPVgjgiTIvqOebIf9xWZO-Ta8VUXH-9a0R0hk\"\n    }\n}"
+						},
+						{
+							"name": "Wrong Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"superadmin\",\n    \"password\": \"Haruslolos123!!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-g2WopRmqbbccMxirf2NWM31YggU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:08:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Un Authorized!\"\n}"
+						},
+						{
+							"name": "Wrong Username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"superadmins\",\n    \"password\": \"Haruslolos123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-g2WopRmqbbccMxirf2NWM31YggU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:08:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Un Authorized!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REFRESH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonBody = JSON.parse(responseBody);",
+									"if(typeof jsonBody.data !== 'undefined') {",
+									"    postman.setEnvironmentVariable(\"token\", jsonBody.data.accessToken)",
+									"    postman.setEnvironmentVariable(\"deviceId\", jsonBody.data.deviceId);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/auth/refresh-token",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"refresh-token"
+							]
+						},
+						"description": "Fetch new Token as a refresh token"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/auth/refresh-token",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZXlKcGRpSTZJbE5IV2paVWJESjFhR1l2U1hSWVRGUWlMQ0psYm1OeWVYQjBaV1JFWVhSaElqb2laR3BuYlhGYVZ6QnRla2xOZUZoRFVrWklkemR1V2pGMFRHWnBSbTVRU1ZWU1pEQkhTbWxaTWtSME9VMUdPV3BpUVRoRGFtcExNV05PTjFaR1JUTk1WbGRQUTJ4bGFGWTFabWh3U0RGNlpEQmljV2hqYlUxVFpqVjNRakk0TUhvMVIwSjVOMjlQZHpKek1ITldJaXdpWVhWMGFDSTZJa1UxVkZaQ09FeEZOUzl2UlU5Mk1qZGpOM0ZVT1hjOVBTSjkiLCJpYXQiOjE2NzAyMDk3OTEsImV4cCI6MTY3MDIwOTk3MSwiYXVkIjoiY29zbWFydC5jby5pZCIsImlzcyI6ImNvc21hcnQuY28uaWQifQ.6b43sIyZkflZSMXjVX_dSf2VnWuv3OpppoZDE7YYaio; Max-Age=86400; Path=/; Expires=Tue, 06 Dec 2022 03:09:51 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "DID=900b2043-718d-4380-9f65-07e41eade4dc; Max-Age=31536000; Path=/; Expires=Tue, 05 Dec 2023 03:09:51 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "449"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c1-NLS1oEzMfHEmEpn19qyBUBCxyuQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:09:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjYzOGIzNDJlN2ZkYzBjZGY5NWY2MTcxMCIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsImZpcnN0TmFtZSI6InN1cGVyIiwiZW1haWwiOiJzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlzQWN0aXZlIjp0cnVlLCJpc0FkbWluIjp0cnVlfSwiaWF0IjoxNjcwMjA5NzkxLCJleHAiOjE2NzAyMDk5MTEsImF1ZCI6ImNvc21hcnQuY28uaWQiLCJpc3MiOiJjb3NtYXJ0LmNvLmlkIn0.qslAe_3dioFs0bOtN1wOpfhuLwNsAE7UAf50Fj7ueIM\"\n    }\n}"
+						},
+						{
+							"name": "UnAuthorize",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/auth/refresh-token",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "12"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c-dAuDFQrdjS3hezqxDTNgW7AOlYk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:10:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Unauthorized"
+						}
+					]
+				},
+				{
+					"name": "LOGOUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setEnvironmentVariable(\"token\", null);",
+									"postman.setEnvironmentVariable(\"refresh_token\", null);",
+									"pm.cookies.clear()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/auth/logout?allDevices=true",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "allDevices",
+									"value": "true",
+									"description": "true or false"
+								}
+							]
+						},
+						"description": "User Logout and remove token, cookies etc"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/auth/logout?allDevices=true",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"logout"
+									],
+									"query": [
+										{
+											"key": "allDevices",
+											"value": "true",
+											"description": "true or false"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:10:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "UnAuthorize",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/auth/logout?allDevices=true",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"logout"
+									],
+									"query": [
+										{
+											"key": "allDevices",
+											"value": "true",
+											"description": "true or false"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "12"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c-dAuDFQrdjS3hezqxDTNgW7AOlYk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 03:10:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Unauthorized"
+						}
+					]
+				}
+			],
+			"description": "User admin need to authenticate before accessing all API"
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"super1\",\n    \"lastName\": \"admin2\",\n    \"username\": \"superadmin1\",\n    \"email\": \"superadmin1@gmail.com\",\n    \"password\": \"Haruslolos123!\",\n    \"address\": \"di hati cosmart\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						},
+						"description": "Create user use `JSON` payload to create a user"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"need\",\n    \"lastName\": \"job\",\n    \"username\": \"needjob\",\n    \"email\": \"needjob@gmail.com\",\n    \"password\": \"Haruslolos123!\",\n    \"address\": \"di hati cosmart\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-UvEjgkg3PHTtj4sfK74RfByqXCM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 17:38:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": \"638cdb32cf642a10585cef4c\"\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": 132,\n    \"lastName\": \"admin\",\n    \"username\": \"superadmin\",\n    \"email\": \"superadmin@gmail.com\",\n    \"password\": \"123\",\n    \"address\": \"di hati cosmart\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "349"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15d-HcKLEN+xzoczAZpWP1tVBZtX3+g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:00:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"firstName\",\n            \"key\": \"type\",\n            \"message\": \"Firstname must be string\"\n        },\n        {\n            \"param\": \"password\",\n            \"key\": \"minLength\",\n            \"message\": \"Password should be greater than 6\"\n        },\n        {\n            \"param\": \"password\",\n            \"key\": \"format\",\n            \"message\": \"Password should be including 1 Uppercase, 1 number and 1 special character(#?!@$%^&*-)\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "masa",
+									"description": "string",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "masa",
+									"description": "string",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "masa",
+									"description": "string",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"description": "array string => true, false",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Fetch all list users\n\ncan be filtered by user fields\n\n``` javascript\n[\n    \"userId\",\n     \"firstName\",\n     \"username\",\n     \"email\",\n     \"isActive\",\n]\n\n```"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "410"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19a-l3sqn3gADR8EEahCb2NYwuo1RYI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:08:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"_id\": \"638c85b7bedda18dfa65fdd8\",\n            \"firstName\": \"masa\",\n            \"username\": \"masalalu\",\n            \"email\": \"masalalu@gmail.com\",\n            \"isActive\": true\n        },\n        {\n            \"_id\": \"638cdb32cf642a10585cef4c\",\n            \"firstName\": \"need\",\n            \"username\": \"needjob\",\n            \"email\": \"needjob@gmail.com\",\n            \"isActive\": true\n        },\n        {\n            \"_id\": \"638b342e7fdc0cdf95f61710\",\n            \"firstName\": \"super\",\n            \"username\": \"superadmin\",\n            \"email\": \"superadmin@gmail.com\",\n            \"isActive\": true\n        }\n    ]\n}"
+						},
+						{
+							"name": "Success with filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users?userId=638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "firstName",
+											"value": "masa",
+											"disabled": true
+										},
+										{
+											"key": "username",
+											"value": "masa",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "masa",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-Dj6gZx2VAY3p7zS6UdQ8aCyIFpA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:11:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"_id\": \"638c85b7bedda18dfa65fdd8\",\n            \"firstName\": \"masa\",\n            \"username\": \"masalalu\",\n            \"email\": \"masalalu@gmail.com\",\n            \"isActive\": true\n        },\n        {\n            \"_id\": \"638b342e7fdc0cdf95f61710\",\n            \"firstName\": \"super\",\n            \"username\": \"superadmin\",\n            \"email\": \"superadmin@gmail.com\",\n            \"isActive\": true\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "GET TABLE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users/table?sortBy=status&sortType=desc",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"table"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "status",
+									"description": "firstName, username, email, status"
+								},
+								{
+									"key": "sortType",
+									"value": "desc",
+									"description": "asc, desc and/or  0, 1"
+								},
+								{
+									"key": "search",
+									"value": "nothing",
+									"description": "string",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": null,
+									"description": "true, flase",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Fetch `User` using pagination\n\nallowed filter/search by multiple fields\n\n- firstName\n- username\n- email\n- status\n    \n\ncan be sorted by those fields as well\n\n`sortBy` = status\n\n`sortType` = `desc` or `asc`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/table?sortBy=status&sortType=desc",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status"
+										},
+										{
+											"key": "sortType",
+											"value": "desc"
+										},
+										{
+											"key": "search",
+											"value": "super",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "611"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"263-JPGziJRurkDQZu96IQq7mi9wHL4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:31:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"status\": \"DESC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 3,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"638b342e7fdc0cdf95f61710\",\n                \"firstName\": \"super\",\n                \"username\": \"superadmin\",\n                \"email\": \"superadmin@gmail.com\",\n                \"isActive\": true,\n                \"updatedAt\": \"2022-12-04T19:53:20.387Z\"\n            },\n            {\n                \"_id\": \"638c85b7bedda18dfa65fdd8\",\n                \"firstName\": \"masa\",\n                \"username\": \"masalalu\",\n                \"email\": \"masalalu@gmail.com\",\n                \"isActive\": true,\n                \"updatedAt\": \"2022-12-04T11:34:15.729Z\"\n            },\n            {\n                \"_id\": \"638cdb32cf642a10585cef4c\",\n                \"firstName\": \"need\",\n                \"username\": \"needjob\",\n                \"email\": \"needjob@gmail.com\",\n                \"isActive\": false,\n                \"updatedAt\": \"2022-12-04T17:38:58.088Z\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "No user found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/table?sortBy=status&sortType=desc&search=nothing",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status"
+										},
+										{
+											"key": "sortType",
+											"value": "desc"
+										},
+										{
+											"key": "search",
+											"value": "nothing"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-02pZIWhW27G/Jx4lwS+3VtZO5wo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:32:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"status\": \"DESC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 0,\n        \"totalPage\": 1,\n        \"data\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "GET ONE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"638b342e7fdc0cdf95f61710"
+							]
+						},
+						"description": "Fetch a single user using `id with ObjectId format`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "621"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26d-WEX/+6MLW//WP48A70ilfdFFFzk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:33:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"638b342e7fdc0cdf95f61710\",\n        \"firstName\": \"super\",\n        \"lastName\": \"admin\",\n        \"username\": \"superadmin\",\n        \"email\": \"superadmin@gmail.com\",\n        \"address\": \"di hati cosmart\",\n        \"isActive\": true,\n        \"infoLogin\": {\n            \"hash\": \"d7d53541df690651e8b6748a587003010b39dd77e14f97fd6b81e5c7f22012dfd9fa69b7b0c11a76d4de5bd8f7f72e19fa7bca1a5ef6bca91b9d3b076b97747c\",\n            \"salt\": \"qt1Sa7e3d5DGj/mVv2PIJOB0t6ofhKzJ+rhdBAIMbhrzgzNpz3rPKEjjmTuEb8yNX2intdE7NesGuznqmLMY9qwS/9DZJ7YrBu/9Dz3xyTUzStV5EZHglyCLR2YS/XNcHMMiIw6t7XMMN3yHCDuQ4dyRZnT+vyPD7VW84Pl1WXI=\",\n            \"iterations\": 8912\n        },\n        \"updatedAt\": \"2022-12-04T19:53:20.387Z\",\n        \"gender\": \"Man\"\n    }\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61711",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61711"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:33:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"super\",\n    \"lastName\": \"admin\",    \n    \"address\": \"di hati cosmart\",\n    \"gender\": \"Man\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"638b342e7fdc0cdf95f61710"
+							]
+						},
+						"description": "Update user use `JSON` payload to update a user\n\nNote: only below field can be updated using `PUT`."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"super\",\n    \"lastName\": \"admin\",    \n    \"address\": \"di hati cosmart\",\n    \"gender\": \"Man\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61711",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61711"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "622"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26e-LRJkQhcUZ+yDmyH0hl0KHo98S4I\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 19:53:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"638b342e7fdc0cdf95f61710\",\n        \"firstName\": \"super\",\n        \"lastName\": \"admin\",\n        \"username\": \"superadmin\",\n        \"email\": \"superadmin@gmail.com\",\n        \"address\": \"di hati cosmart\",\n        \"isActive\": false,\n        \"infoLogin\": {\n            \"hash\": \"f6cd5fad5b1c120fce3e1f87961d1ff65021e873e3e49be587671f7157369c4ccd2467bc98f069b2a7997d2fa1fe047f8896cc96bb2f186202feb5943dce9977\",\n            \"salt\": \"87Om/3NARWYw4gb1NLoHd8wDPax68kA8qkjtV1hk34E2zyvQ9bGzUrvkPF/3ZWmdijWLZfBEvKxVmyFfCbJiFA1bwrSuMwk2TOXyiwqEF60lNTIbwBwaRZ45LLXyVggnUaVW1A4B+sYczxc7VooHPS3qTO7ClJinANgWkTVsL1U=\",\n            \"iterations\": 1434\n        },\n        \"updatedAt\": \"2022-12-04T19:53:20.387Z\",\n        \"gender\": \"Man\"\n    }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": 123,\n    \"lastName\": \"admin\",    \n    \"address\": \"di hati cosmart\",\n    \"gender\": \"Man\",\n    \n    \"other\": \"oalah\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "225"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e1-aPl6F1ikN+xKUacyAdN1GnjyrFU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 19:58:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"other\",\n            \"key\": \"additionalProperties\",\n            \"message\": \"must NOT have additional properties\"\n        },\n        {\n            \"param\": \"firstName\",\n            \"key\": \"type\",\n            \"message\": \"Firstname must be string.\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"super\",\n    \"lastName\": \"admin\",    \n    \"address\": \"di hati cosmart\",\n    \"gender\": \"Man\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61711",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61711"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:01:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH CREDENTIAL",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Haruslolos123!\",\n    \"newPassword\": \"!Haruslolos123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"638b342e7fdc0cdf95f61710"
+							]
+						},
+						"description": "Update user **password** use `JSON` payload to update a user"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"Haruslolos123!\",\n    \"newPassword\": \"!Haruslolos123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 19:55:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Wrong Password",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"!Haruslolos123\",\n    \"newPassword\": \"Haruslolos123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-zh0vY5b8q+3+A56cgBho6MnD5GI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 19:54:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Incorect Password\"\n}"
+						},
+						{
+							"name": "validation error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "206"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ce-h3C6VPsAW9FUmNZl+BquzyX882c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 19:55:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"password\",\n            \"key\": \"required\",\n            \"message\": \"Password is required\"\n        },\n        {\n            \"param\": \"newPassword\",\n            \"key\": \"required\",\n            \"message\": \"New Password is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Validation error other field",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"Haruslolos123!\",\n    \"newPassword\": \"!Haruslolos123\",\n\n    \"otherfield\": \"lol\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "157"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9d-K7cHo0bpFoTRNtlrN2sZLp+h62A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 19:56:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"otherfield\",\n            \"key\": \"additionalProperties\",\n            \"message\": \"must NOT have additional properties\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"Haruslolos123!\",\n    \"newPassword\": \"!Haruslolos123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/638b342e7fdc0cdf95f61711",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638b342e7fdc0cdf95f61711"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:01:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH USER STATUS",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isActive\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users/status/638b342e7fdc0cdf95f61710",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"status",
+								"638b342e7fdc0cdf95f61710"
+							]
+						},
+						"description": "Update user status use `JSON` payload to update"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/status/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"status",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-tx5C0tgTGIJ5B62h6MJry+kYLR4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:02:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"isActive\": true\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isActive\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/status/638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"status",
+										"638b342e7fdc0cdf95f61710"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "209"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d1-ukiy4UGbWeOEjKbW8DVDxXIm9jQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:03:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"isActive\",\n            \"key\": \"type\",\n            \"message\": \"Status should be boolean\"\n        },\n        {\n            \"param\": \"isActive\",\n            \"key\": \"enum\",\n            \"message\": \"Please select one from the options\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/status/638b342e7fdc0cdf95f61711",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"status",
+										"638b342e7fdc0cdf95f61711"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:05:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users/638cfdd0e18440b7d43ddbcd",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"638cfdd0e18440b7d43ddbcd"
+							]
+						},
+						"description": "Delete a single user using `id`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/638cfdd0e18440b7d43ddbcd",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638cfdd0e18440b7d43ddbcd"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:06:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/638c77dcecfde840e3184fa111",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"638c77dcecfde840e3184fa111"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:05:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						},
+						{
+							"name": "Url not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:07:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				}
+			],
+			"description": "`Users` directory contains all the user related APIs. For authentication these apis requrie `BasicAuth`"
+		},
+		{
+			"name": "OPENLIBRARY",
+			"item": [
+				{
+					"name": "GET BY  SUBJECT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/books?search=love&limit=1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "love",
+									"description": "string"
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"description": "number"
+								}
+							]
+						},
+						"description": "Fetch list book by `Subject` from [Open Library API](https://openlibrary.org/dev/docs/api)\n\nUse param `Search` to get list subject\n\ncan also using `limit` where limit default to `10`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/books?search=love",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "love"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1710"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6ae-M8+Yh497NbAH6ciQrAhY+g1iq54\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:38:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"key\": \"/works/OL21177W\",\n            \"title\": \"Wuthering Heights\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL4327048A\",\n                    \"name\": \"Emily Brontë\"\n                }\n            ],\n            \"edition_count\": 1608,\n            \"cover_id\": 12818862\n        },\n        {\n            \"key\": \"/works/OL362427W\",\n            \"title\": \"Romeo and Juliet\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL9388A\",\n                    \"name\": \"William Shakespeare\"\n                }\n            ],\n            \"edition_count\": 969,\n            \"cover_id\": 8257991\n        },\n        {\n            \"key\": \"/works/OL98501W\",\n            \"title\": \"Ethan Frome\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL20188A\",\n                    \"name\": \"Edith Wharton\"\n                }\n            ],\n            \"edition_count\": 718,\n            \"cover_id\": 8303480\n        },\n        {\n            \"key\": \"/works/OL27776452W\",\n            \"title\": \"The Importance of Being Earnest\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL20646A\",\n                    \"name\": \"Oscar Wilde\"\n                }\n            ],\n            \"edition_count\": 442,\n            \"cover_id\": 1260453\n        },\n        {\n            \"key\": \"/works/OL267096W\",\n            \"title\": \"Anna Karénina\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL26783A\",\n                    \"name\": \"Lev Nikolaevič Tolstoy\"\n                }\n            ],\n            \"edition_count\": 388,\n            \"cover_id\": 2560652\n        },\n        {\n            \"key\": \"/works/OL8193420W\",\n            \"title\": \"The Republic\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL189658A\",\n                    \"name\": \"Πλάτων\"\n                },\n                {\n                    \"key\": \"/authors/OL2933723A\",\n                    \"name\": \"G.M.A. Grube\"\n                }\n            ],\n            \"edition_count\": 349,\n            \"cover_id\": 8235511\n        },\n        {\n            \"key\": \"/works/OL551668W\",\n            \"title\": \"Cyrano de Bergerac\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL39281A\",\n                    \"name\": \"Edmond Rostand\"\n                }\n            ],\n            \"edition_count\": 307,\n            \"cover_id\": 8236320\n        },\n        {\n            \"key\": \"/works/OL10264W\",\n            \"title\": \"Le Petit Prince\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL31901A\",\n                    \"name\": \"Antoine de Saint-Exupéry\"\n                }\n            ],\n            \"edition_count\": 267,\n            \"cover_id\": 10708272\n        },\n        {\n            \"key\": \"/works/OL15100036W\",\n            \"title\": \"The Dialogues of Plato\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL189658A\",\n                    \"name\": \"Πλάτων\"\n                }\n            ],\n            \"edition_count\": 246,\n            \"cover_id\": 8236248\n        },\n        {\n            \"key\": \"/works/OL239940W\",\n            \"title\": \"कामसूत्र\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL2531003A\",\n                    \"name\": \"Vātsyāyana\"\n                }\n            ],\n            \"edition_count\": 236,\n            \"cover_id\": 8003766\n        }\n    ]\n}"
+						},
+						{
+							"name": "Succes with limit",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/books?search=love&limit=1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "love"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "204"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cc-cuQlGw611bcGbvt+N73FZhlQ+Ls\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:50:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"key\": \"/works/OL21177W\",\n            \"title\": \"Wuthering Heights\",\n            \"authors\": [\n                {\n                    \"key\": \"/authors/OL4327048A\",\n                    \"name\": \"Emily Brontë\"\n                }\n            ],\n            \"edition_count\": 1608,\n            \"cover_id\": 12818862\n        }\n    ]\n}"
+						},
+						{
+							"name": "No book(s) found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/books?search=layoff&limit=1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "layoff"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-HMNGZck3B6pLDYXbmAzn2sZ6bXs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 20:52:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"No book(s) found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/books/detail?key=/works/OL21177W",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "/works/OL21177W",
+									"description": "data.key"
+								}
+							]
+						},
+						"description": "Fetch detail book from `Subject` from [Open Library API](https://openlibrary.org/dev/docs/api)\n\nUse param `key` to get detail of the book.\n\nNoted : need to request to Api Book first than use field `key` from the array\n\nexe: `?key=/works/OL21177W`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/books/detail?key=/works/OL21177W",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "/works/OL21177W"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1603"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"643-JgxGhrLpHtAgKWeEBUSG1mCLtDM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:00:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"key\": \"/works/OL21177W\",\n        \"title\": \"Wuthering Heights\",\n        \"authors\": [\n            {\n                \"author\": {\n                    \"key\": \"/authors/OL4327048A\"\n                },\n                \"type\": {\n                    \"key\": \"/type/author_role\"\n                }\n            }\n        ],\n        \"description\": \"Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction.\",\n        \"first_sentence\": {\n            \"type\": \"/type/text\",\n            \"value\": \"1801.-I have just returned from a visit to my landlord-the solitary neighbour that I shall be troubled with.\"\n        },\n        \"first_publish_date\": \"April 1, 2000\",\n        \"links\": [\n            {\n                \"url\": \"https://en.wikipedia.org/wiki/Wuthering_Heights\",\n                \"title\": \"Wuthering Heights - Wikipedia\",\n                \"type\": {\n                    \"key\": \"/type/link\"\n                }\n            },\n            {\n                \"url\": \"https://www.cliffsnotes.com/literature/w/wuthering-heights/wuthering-heights-at-a-glance\",\n                \"title\": \"Wuthering Heights at a glance (cliffsnotes.com)\",\n                \"type\": {\n                    \"key\": \"/type/link\"\n                }\n            },\n            {\n                \"url\": \"https://www.theguardian.com/books/2013/dec/16/emily-bronte-wuthering-heights-100-best\",\n                \"title\": \"The 100 best novels: No 13 – Wuthering Heights by Emily Brontë (1847) (theguardian.com)\",\n                \"type\": {\n                    \"key\": \"/type/link\"\n                }\n            },\n            {\n                \"title\": \"The reader's guide to Emily Bronte's classic 'Wuthering Heights' (wuthering-heights.co.uk)\",\n                \"url\": \"https://www.wuthering-heights.co.uk/\",\n                \"type\": {\n                    \"key\": \"/type/link\"\n                }\n            },\n            {\n                \"url\": \"https://thegreatestbooks.org/items/108\",\n                \"title\": \"thegreatestbooks.org/items/108\",\n                \"type\": {\n                    \"key\": \"/type/link\"\n                }\n            }\n        ],\n        \"revision\": 101\n    }\n}"
+						},
+						{
+							"name": "Not book detail found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/books/detail?key=/works/OL21177W1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "/works/OL21177W1"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-HKeJGbNnHPxQC8TzKr90vx6a4O0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Request failed with status code 404\"\n}"
+						}
+					]
+				}
+			],
+			"description": "OpenLibrary API\n\nthis is an open source library\n\nfor more detail. follow this link\n\n[Open Library API](https://openlibrary.org/dev/docs/api)"
+		},
+		{
+			"name": "BOOKINGS",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"638d3fb01ae7b78318c8dd00\",\n    \"startDate\": \"2022-12-12 12:00:00\",\n    \"endDate\": \"2022-12-15 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/bookings",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings"
+							]
+						},
+						"description": "Create `Booking` use `JSON` payload to create a booking/appointment"
+					},
+					"response": [
+						{
+							"name": "Success booking",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 12:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-nX7hMxyfqKZzvpRpJVxNX4f1gYE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:34:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": \"638d205a766f97ff1c40d8e6\"\n}"
+						},
+						{
+							"name": "Invalid Date ranges",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5e-6PAQjnHTkcVRME7lqS2Xgolg7zA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:31:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Dont stuck in the past, there is still a lot of sand in the ocean\"\n}"
+						},
+						{
+							"name": "Duplciate book and not return yet",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 12:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-sMDc6X9HX0fArO+ql3YG1NYFrw4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:34:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Please check you list, one/some of them is still you borrowed\"\n}"
+						},
+						{
+							"name": "Invali Long borrowing date",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 12:00:00\",\n    \"endDate\": \"2022-12-18 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-lTsjdoqKFF2JZHBQJyDQF6sbvTk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:35:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"You can only borrow maximal for 3 days\"\n}"
+						},
+						{
+							"name": "Validation Error Empty Item",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 12:00:00\",\n    \"endDate\": \"2022-12-18 02:00:00\",\n    \"list\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-hN7Z5gUkAWIKNGDcR+/V3B0dAfo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:36:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"list\",\n            \"key\": \"minItems\",\n            \"message\": \"Please pick at least one book!\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Validation error field required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 12:00:00\",\n    \"endDate\": \"2022-12-18 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\"\n            \n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"81-I5VogWpz7LunZJIDbaqbDgBaXOo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 22:37:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"bookTitle\",\n            \"key\": \"required\",\n            \"message\": \"Book Title required!\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/bookings?bookingId=638d205a766f97ff1c40d8e6",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "bookingId",
+									"value": "638d205a766f97ff1c40d8e6",
+									"description": "ObjectId"
+								},
+								{
+									"key": "status",
+									"value": "pending",
+									"description": "approved, rejected, pending, done, cancelled",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "Artificial",
+									"description": "for field bookKey and bookTitle",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"description": "number",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Fetch all list `booking/appointment`\n\nalso support for filtering/search\n\navailable fields:\n\n- bookingId\n- status\n- search\n- limit1"
+					},
+					"response": [
+						{
+							"name": "Success without filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings?search=neighborhood",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									],
+									"query": [
+										{
+											"key": "bokingId",
+											"value": "638d205a766f97ff1c40d8e6",
+											"description": "ObjectId",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "pending",
+											"description": "approved, rejected, pending, done, cancelled",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "neighborhood",
+											"description": "for field bookKey and bookTitle"
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"description": "number",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "387"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"183-oV5a6TaZEgv9vNxpch1es2ltnHg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 23:30:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"_id\": \"638d205a766f97ff1c40d8e6\",\n            \"userId\": {\n                \"_id\": \"638cdb32cf642a10585cef4c\",\n                \"fullname\": \"need job\"\n            },\n            \"startDate\": \"2022-12-05T12:00:00+07:00\",\n            \"endDate\": \"2022-12-08T02:00:00+07:00\",\n            \"list\": [\n                {\n                    \"bookKey\": \"/works/OL1859783W\",\n                    \"bookTitle\": \"The Artificial Kingdom\"\n                },\n                {\n                    \"bookKey\": \"/works/OL4279057W\",\n                    \"bookTitle\": \"The Old Neighborhood\"\n                }\n            ],\n            \"status\": \"pending\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Success with filter search",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings?search=neighborhood",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									],
+									"query": [
+										{
+											"key": "bokingId",
+											"value": "638d205a766f97ff1c40d8e6",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "pending",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "neighborhood"
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "387"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"183-oV5a6TaZEgv9vNxpch1es2ltnHg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 23:25:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"_id\": \"638d205a766f97ff1c40d8e6\",\n            \"userId\": {\n                \"_id\": \"638cdb32cf642a10585cef4c\",\n                \"fullname\": \"need job\"\n            },\n            \"startDate\": \"2022-12-05T12:00:00+07:00\",\n            \"endDate\": \"2022-12-08T02:00:00+07:00\",\n            \"list\": [\n                {\n                    \"bookKey\": \"/works/OL1859783W\",\n                    \"bookTitle\": \"The Artificial Kingdom\"\n                },\n                {\n                    \"bookKey\": \"/works/OL4279057W\",\n                    \"bookTitle\": \"The Old Neighborhood\"\n                }\n            ],\n            \"status\": \"pending\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Filter not match to any",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings?search=begadang",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings"
+									],
+									"query": [
+										{
+											"key": "bokingId",
+											"value": "638d205a766f97ff1c40d8e6",
+											"description": "ObjectId",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "pending",
+											"description": "approved, rejected, pending, done, cancelled",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "begadang",
+											"description": "for field bookKey and bookTitle"
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"description": "number",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-alQ/qq9KcHBCLNRYZIkdCtVW1nk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 23:34:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"No Data booking found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET ONE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"638d205a766f97ff1c40d8e6"
+							]
+						},
+						"description": "Fetch a single booking using `id with ObjectId format`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "395"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18b-x5mUEWHS8e6PuiLqHrdffCQWyJw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 23:35:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"638d205a766f97ff1c40d8e6\",\n        \"userId\": \"638cdb32cf642a10585cef4c\",\n        \"startDate\": \"2022-12-05T12:00:00+07:00\",\n        \"endDate\": \"2022-12-08T02:00:00+07:00\",\n        \"list\": [\n            {\n                \"bookKey\": \"/works/OL1859783W\",\n                \"bookTitle\": \"The Artificial Kingdom\"\n            },\n            {\n                \"bookKey\": \"/works/OL4279057W\",\n                \"bookTitle\": \"The Old Neighborhood\"\n            }\n        ],\n        \"status\": \"pending\",\n        \"createdAt\": \"2022-12-05T05:34:02+07:00\"\n    }\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/638c7da4f0ce992071108a40",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638c7da4f0ce992071108a40"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-OWN2SHIMkMd/ItZMPj98cZI8m4A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Dec 2022 23:34:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Booking Id is not found!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET TABLE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/bookings/table?status=done, cancelled",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"table"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "status",
+									"description": "booking's fileds",
+									"disabled": true
+								},
+								{
+									"key": "sortType",
+									"value": "desc",
+									"description": "asc, desc",
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+									"description": "string array",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "begadang",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "done, cancelled",
+									"description": "approved, rejected, pending, done, cancelled"
+								}
+							]
+						},
+						"description": "Fetch `Bookings` using pagination\n\nallowed filter/search by multiple fields\n\n- userId\n- list.bookKey\n- list.bookTitle\n- status\n    \n\ncan be sorted by those fields as well\n\n`sortBy` = status\n\n`sortType` = `desc` or `asc`\n\nnoted: API will always return `200`"
+					},
+					"response": [
+						{
+							"name": "Success without default data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/table",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "booking's fileds",
+											"disabled": true
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+											"description": "string array",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "Neighborhood",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1088"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"440-Ei8FW2wWIq7Gv1Nl8S5mTsZIGhk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:11:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"updatedAt\": \"ASC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 3,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"638c8691b1a20b1247f0ede0\",\n                \"userId\": {\n                    \"_id\": \"638c85b7bedda18dfa65fdd8\",\n                    \"fullname\": \"masa lalu\"\n                },\n                \"list\": [\n                    {\n                        \"bookKey\": \"/works/OL1859783W\",\n                        \"bookTitle\": \"The Artificial Kingdom\"\n                    }\n                ],\n                \"startDate\": \"2022-12-06T02:00:00+07:00\",\n                \"endDate\": \"2022-12-08T02:00:00+07:00\",\n                \"status\": \"pending\"\n            },\n            {\n                \"_id\": \"638cd3e390b9b62be62a87e3\",\n                \"userId\": {\n                    \"_id\": \"638cdb32cf642a10585cef4c\",\n                    \"fullname\": \"need job\"\n                },\n                \"startDate\": \"2022-12-06T02:00:00+07:00\",\n                \"endDate\": \"2022-11-08T02:00:00+07:00\",\n                \"list\": [\n                    {\n                        \"bookKey\": \"/works/OL1859783W\",\n                        \"bookTitle\": \"The Artificial Kingdom\"\n                    },\n                    {\n                        \"bookKey\": \"/works/OL16800971W\",\n                        \"bookTitle\": \"Die Zeit, die Zeit\"\n                    }\n                ],\n                \"status\": \"done\"\n            },\n            {\n                \"_id\": \"638d205a766f97ff1c40d8e6\",\n                \"userId\": {\n                    \"_id\": \"638cdb32cf642a10585cef4c\",\n                    \"fullname\": \"need job\"\n                },\n                \"startDate\": \"2022-12-05T12:00:00+07:00\",\n                \"endDate\": \"2022-12-08T02:00:00+07:00\",\n                \"list\": [\n                    {\n                        \"bookKey\": \"/works/OL1859783W\",\n                        \"bookTitle\": \"The Artificial Kingdom\"\n                    },\n                    {\n                        \"bookKey\": \"/works/OL4279057W\",\n                        \"bookTitle\": \"The Old Neighborhood\"\n                    }\n                ],\n                \"status\": \"pending\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success with filter userIds",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/table?userId=638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "booking's fileds",
+											"disabled": true
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+											"description": "string array"
+										},
+										{
+											"key": "search",
+											"value": "Neighborhood",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "406"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"196-OyIJJ1yKPsE47OGA35WCV3GTqQ8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:14:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"updatedAt\": \"ASC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 3,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"638c8691b1a20b1247f0ede0\",\n                \"userId\": {\n                    \"_id\": \"638c85b7bedda18dfa65fdd8\",\n                    \"fullname\": \"masa lalu\"\n                },\n                \"list\": [\n                    {\n                        \"bookKey\": \"/works/OL1859783W\",\n                        \"bookTitle\": \"The Artificial Kingdom\"\n                    }\n                ],\n                \"startDate\": \"2022-12-06T02:00:00+07:00\",\n                \"endDate\": \"2022-12-08T02:00:00+07:00\",\n                \"status\": \"pending\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success filter nested list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/table?search=Neighborhood",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "booking's fileds",
+											"disabled": true
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+											"description": "string array",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "Neighborhood",
+											"description": "bookKey or bookTtitle of list's field"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "472"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d8-U0Twcim0M7ZncqtQ4DZfsG0z34U\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:18:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"updatedAt\": \"ASC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 3,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"638d205a766f97ff1c40d8e6\",\n                \"userId\": {\n                    \"_id\": \"638cdb32cf642a10585cef4c\",\n                    \"fullname\": \"need job\"\n                },\n                \"startDate\": \"2022-12-05T12:00:00+07:00\",\n                \"endDate\": \"2022-12-08T02:00:00+07:00\",\n                \"list\": [\n                    {\n                        \"bookKey\": \"/works/OL1859783W\",\n                        \"bookTitle\": \"The Artificial Kingdom\"\n                    },\n                    {\n                        \"bookKey\": \"/works/OL4279057W\",\n                        \"bookTitle\": \"The Old Neighborhood\"\n                    }\n                ],\n                \"status\": \"pending\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success but no data found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/table?search=begadang",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "booking's fileds",
+											"disabled": true
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "638c85b7bedda18dfa65fdd8,638b342e7fdc0cdf95f61710",
+											"description": "string array",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "begadang"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"82-WNdve+AKiO5z+6fg4XOIeq0B0YM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:19:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"updatedAt\": \"ASC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 0,\n        \"totalPage\": 1,\n        \"data\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"638d205a766f97ff1c40d8e6"
+							]
+						},
+						"description": "Update Booking use `JSON` payload to update booking\n\nOr you can just replace those field from `GET` `../detail/{id}`\n\nNote: only below field can be updated using `PUT`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ] \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "395"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18b-/cwxtF7VJir4JEzkGvxvQBJYp00\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:23:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"638d205a766f97ff1c40d8e6\",\n        \"userId\": \"638cdb32cf642a10585cef4c\",\n        \"startDate\": \"2022-12-05T02:00:00+07:00\",\n        \"endDate\": \"2022-12-08T02:00:00+07:00\",\n        \"list\": [\n            {\n                \"bookKey\": \"/works/OL1859783W\",\n                \"bookTitle\": \"The Artificial Kingdom\"\n            },\n            {\n                \"bookKey\": \"/works/OL4279057W\",\n                \"bookTitle\": \"The Old Neighborhood\"\n            }\n        ],\n        \"status\": \"pending\",\n        \"createdAt\": \"2022-12-05T07:23:11+07:00\"\n    }\n}"
+						},
+						{
+							"name": "Validation Error on Items",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [] \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-hN7Z5gUkAWIKNGDcR+/V3B0dAfo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:23:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"list\",\n            \"key\": \"minItems\",\n            \"message\": \"Please pick at least one book!\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Validation error required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\"\n        }\n    ] \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"81-I5VogWpz7LunZJIDbaqbDgBaXOo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:24:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"bookTitle\",\n            \"key\": \"required\",\n            \"message\": \"Book Title required!\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Invalid maximal days",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-20 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ] \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-lTsjdoqKFF2JZHBQJyDQF6sbvTk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:25:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"You can only borrow maximal for 3 days\"\n}"
+						},
+						{
+							"name": "Validation error additional field",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"638cdb32cf642a10585cef4c\",\n    \"startDate\": \"2022-12-05 02:00:00\",\n    \"endDate\": \"2022-12-08 02:00:00\",\n    \"list\": [\n        {\n            \"bookKey\": \"/works/OL1859783W\",\n            \"bookTitle\": \"The Artificial Kingdom\"\n        },\n        {\n            \"bookKey\": \"/works/OL4279057W\",\n            \"bookTitle\": \"The Old Neighborhood\"\n        }\n    ],\n    \"status\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-t7um0b1U+wRS0o8k6jDGvnw7QLQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:26:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"status\",\n            \"key\": \"additionalProperties\",\n            \"message\": \"must NOT have additional properties\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH BOOKING STATUS",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"approved\",\n    \"reason\": \"oke, take them all\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/bookings/status/638d41cfb8b5e4ba794fe9bf",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"status",
+								"638d41cfb8b5e4ba794fe9bf"
+							]
+						},
+						"description": "This is used to handle `booking status`\n\n`list status`\n\n- pending,\n- rejected,\n- approved,\n- done,\n- cancelled"
+					},
+					"response": [
+						{
+							"name": "Success Approved",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"approved\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-sIWccmmXzOflpJrOWwIpmuc1yeI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:34:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"status\": \"approved\"\n    }\n}"
+						},
+						{
+							"name": "Success Done",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"done\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-XyoYUevV9rIJTpwzef8uUVfS2A0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:42:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"status\": \"done\"\n    }\n}"
+						},
+						{
+							"name": "Success Cancelled",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"cancelled\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-3ozSYoekKP/zjvncEOHb/aBvLhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:44:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"status\": \"cancelled\"\n    }\n}"
+						},
+						{
+							"name": "Validation error when rejected",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"rejected\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "261"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"105-xKtusmAS08b0flzDnxw9H+lAAXo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:35:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"reason\",\n            \"key\": \"required\",\n            \"message\": \"must have required property 'reason'\"\n        },\n        {\n            \"key\": \"if\",\n            \"message\": \"must match \\\"then\\\" schema\"\n        },\n        {\n            \"key\": \"oneOf\",\n            \"message\": \"must match exactly one schema in oneOf\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Invalid to rollback approved-> pending",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"pending\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-Li9egPJ/JTdOIG+Io4E4VlpUakU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:34:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The Booking is already approved, please return our book for new booking\"\n}"
+						},
+						{
+							"name": "Invalid to rollback approved-> rejected",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"rejected\",\n    \"reason\": \"no employee\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-Li9egPJ/JTdOIG+Io4E4VlpUakU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:39:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The Booking is already approved, please return our book for new booking\"\n}"
+						},
+						{
+							"name": "Invalid to rollback approved-> cancelled",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"cancelled\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-Li9egPJ/JTdOIG+Io4E4VlpUakU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:41:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The Booking is already approved, please return our book for new booking\"\n}"
+						},
+						{
+							"name": "Invalid, cannot modify status done",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"done\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-hOXxoHFlSszm0UyWSnW06OKZHM0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:43:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"You cannot modify this boking anymore\"\n}"
+						},
+						{
+							"name": "Success rejected",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"rejected\",\n    \"reason\": \"malas\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/bookings/status/638d205a766f97ff1c40d8e6",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"status",
+										"638d205a766f97ff1c40d8e6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-xmB9l4ubUdwOk51SGRsEERPgAUY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:45:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"status\": \"rejected\",\n        \"reason\": \"malas\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/bookings/638d41cfb8b5e4ba794fe9bf",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"638d41cfb8b5e4ba794fe9bf"
+							]
+						},
+						"description": "Delete a single `booking` using `id`\n\nNote: cannot delete booking with status `approved`, but API will alway re"
+					},
+					"response": [
+						{
+							"name": "Success delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d41a5b8b5e4ba794fe9be",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d41a5b8b5e4ba794fe9be"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:56:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not found id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/638c7b323fbae6bfdbcd8cc01",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638c7b323fbae6bfdbcd8cc01"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32-pVIdqWahh5n1JtLIXDFjNtMtFQg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:49:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Booking Id not found!\"\n}"
+						},
+						{
+							"name": "Invalid when status apprvoed",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/bookings/638d41cfb8b5e4ba794fe9bf",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"bookings",
+										"638d41cfb8b5e4ba794fe9bf"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, tdid"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-0mlbmBY8/DvIuKGOuLyUL98mIow\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Dec 2022 00:59:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Booking Id is not found or book(s) still borrowed!\"\n}"
+						}
+					]
+				}
+			],
+			"description": "This API have more logic to implemented\n\n- user need to register first and must be active\n- should can't choose date in the previous day\n- there are limitation for cook count, book booking and how long book can be borrowed\n    \n\nInfo:\n\nthere are 3 uri for GET,\n\n- `/v1/bookings`\n- `/v1/bookings/{bookingId}`\n- `/v1/bookings/table`\n    \n\nill suggest to use table version bacause it support pagination, search, filter by etc."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
