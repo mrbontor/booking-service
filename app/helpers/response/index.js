@@ -10,7 +10,7 @@ const SERVER_ERROR = 500;
 const COOKIE_REFRESH_TOKEN = 'RTOKEN';
 const COOKIE_DEVICE_ID = 'DID';
 const { ValidationError } = require('../exceptions');
-const isSecure = process.env.ENV != 'development';
+const isSecure = process.env.ENV == 'development';
 
 module.exports = {
     success: (res, data, message = 'Success') => {
@@ -85,6 +85,10 @@ module.exports = {
         let response = {};
         response.status = error.status;
         response.message = error.message;
+
+        if (error instanceof ValidationError && Array.isArray(error.errors)) {
+            response.errors = error.errors;
+        }
 
         if (error instanceof ValidationError && Array.isArray(error.errors)) {
             response.errors = error.errors;

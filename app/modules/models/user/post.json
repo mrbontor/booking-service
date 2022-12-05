@@ -63,6 +63,11 @@
             "errorMessage": {
                 "enum": "Please select one from the options"
             }
+        },
+        "isAdmin": {
+            "type": "boolean",
+            "enum": [true, false],
+            "default": false
         }
     },
     "additionalProperties": false,

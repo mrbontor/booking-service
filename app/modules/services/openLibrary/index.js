@@ -59,7 +59,7 @@ const filterSubjectResult = (books) => {
         FIELDS_SUBJECT.forEach((field) => (newBook[field] = book[field]));
         return newBook;
     });
-    return results.length ;
+    return results ;
 };
 
 const filterDetailResult = (book) => {

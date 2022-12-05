@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["isAdmin"],
+    "properties": {
+        "isAdmin": {
+            "type": "boolean",
+            "enum": [true, false],
+            "errorMessage": {
+                "type": "Status should be boolean",
+                "enum": "Please select one from the options"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {
+            "isAdmin": "User level is required"
+        }
+    }
+}

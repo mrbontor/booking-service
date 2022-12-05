@@ -3,8 +3,14 @@ const App = express();
 
 const { BookingController } = require('../../../modules/controllers');
 
+
+App.post('/', BookingController.createBooking)
+
+const { VerifyToken } = require('../../../modules/middleware');
+App.use(VerifyToken.verifyToken);
+
 App.get('/', BookingController.getAllBookings)
-    .post('/', BookingController.createBooking)
+
     .get('/table', BookingController.getTableBookings)
     .patch('/status/:bookingId', BookingController.updateStatusBooking)
     .get('/:bookingId', BookingController.getBooking)
