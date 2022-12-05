@@ -52,4 +52,17 @@ App.use((err, req, res, next) => {
     next();
 });
 
+const ACTIVE_VERSION = process.env.ACTIVE_VERSION || 'v1';
+const CurrentVersion = require(`./${ACTIVE_VERSION}`);
+App.use(`/${ACTIVE_VERSION}`, CurrentVersion);
+
+//Handle 404 for api not exist
+App.use((req, res, next) => {
+    err = new Error('Not Found');
+    res.sendStatus('404');
+});
+
+const { ErrorHandler } = require('../modules/middleware');
+App.use(ErrorHandler.errorHandler);
+
 module.exports = App;

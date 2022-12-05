@@ -24,9 +24,10 @@ const request = async (method, url, reqData = {}, options = {}) => {
 
         const errResponse = {
             message: error.message || error.response.message || 'ErrorRequest',
-            code: error.response.statusText,
+            statusCode: error.response ? error.response.status : error.response.statusText,
+            status: false
         };
-        return errResponse;
+        throw errResponse;
     }
 };
 
