@@ -12,7 +12,9 @@
 - [Postman](https://learning.postman.com/docs/getting-started/introduction/)
 
 
-I dont finish the Unit Test yet, but i have provided all the API serive including test case for every `endpoints` in folder [/postman](https://github.com/mrbontor/booking-service/tree/main/postman)
+Note : _I dont finish the Unit Test yet, but i have provided all the API serive including test case for every `endpoints` in folder [/postman](https://github.com/mrbontor/booking-service/tree/main/postman)_
+
+_unit test available for the main bisnic logic, [Booking Service](https://github.com/mrbontor/booking-service/tree/main/test/services/booking.spec.js)_
 
 ### Settings & Configuring
 

@@ -58,14 +58,7 @@ const Services = {
             throw new BadRequestError(`You borrow too much`);
         }
         const listOfBookKey = payload.list.map((item) => item.bookKey);
-        const query = {
-            'list.bookKey': {
-                $in: listOfBookKey,
-            },
-            userId: payload.userId,
-            status: { $ne: 'done' },
-        };
-        const isExist = await BookingRepository.findBooking(query);
+        const isExist = await BookingRepository.isBookingExist(payload.userId, listOfBookKey);
         if (isExist) {
             throw new UnprocessableEntityError(`Please check you list, one/some of them is still you borrowed`);
         }

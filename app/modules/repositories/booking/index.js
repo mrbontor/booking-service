@@ -41,6 +41,17 @@ module.exports = {
     findBooking: async (payload, projection = {}) => {
         return await client.collection(COLLECTION_BOOKING).findOne(payload, projection);
     },
+    
+    isBookingExist: async (userId, payload) => {
+        const query = {
+            'list.bookKey': {
+                $in: payload,
+            },
+            userId: userId,
+            status: { $ne: 'done' },
+        };
+        return await client.collection(COLLECTION_BOOKING).findOne(query, projection);
+    },
 
     getById: async (bookingId, projection = {}) => {
         if (!Mongo.isValidId(bookingId)) {
